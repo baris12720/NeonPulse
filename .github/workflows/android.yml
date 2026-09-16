@@ -1,4 +1,4 @@
-name: Build NeonPulse APK
+name: NeonPulse APK Olustur
 on:
   push:
     branches: [ main ]
@@ -6,15 +6,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
+    - name: Kodlari Al
       uses: actions/checkout@v4
-    - name: Set up JDK 17
+    - name: Java 17 Kur
       uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: '17'
-    - name: Grant execute permission for gradlew
+    - name: Gradle Calistirma Izni Ver
       run: chmod +x gradlew || true
-    - name: Build Debug APK
-      run: ./gradlew assembleDebug || echo "Gradle wrapper missing, add standard wrapper if needed"
+    - name: APK Insa Et
+      run: ./gradlew assembleDebug
+    - name: APK Dosyasini Kaydet
+      uses: actions/upload-artifact@v4
+      with:
+        name: NeonPulse-Debug-APK
+        path: app/build/outputs/apk/debug/app-debug.apk
 
